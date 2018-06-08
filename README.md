@@ -1,5 +1,5 @@
-[![NPM](https://img.shields.io/npm/v/eosjs-ecc.svg)](https://www.npmjs.org/package/eosjs-ecc)
-[![Build Status](https://travis-ci.org/EOSIO/eosjs-ecc.svg?branch=master)](https://travis-ci.org/EOSIO/eosjs-ecc)
+[![NPM](https://img.shields.io/npm/v/enujs-ecc.svg)](https://www.npmjs.org/package/enujs-ecc)
+[![Build Status](https://travis-ci.org/EOSIO/enujs-ecc.svg?branch=master)](https://travis-ci.org/EOSIO/enujs-ecc)
 
 # Elliptic curve cryptography functions (ECC)
 
@@ -8,9 +8,9 @@ Private Key, Public Key, Signature, AES, Encryption / Decryption
 # Import
 
 ```js
-import ecc from 'eosjs-ecc'
+import ecc from 'enujs-ecc'
 // or
-const ecc = require('eosjs-ecc')
+const ecc = require('enujs-ecc')
 ```
 
 # Common API
@@ -218,7 +218,7 @@ Type: [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 # Usage (Object API)
 
 ```js
-let {PrivateKey, PublicKey, Signature, Aes, key_utils, config} = require('eosjs-ecc')
+let {PrivateKey, PublicKey, Signature, Aes, key_utils, config} = require('enujs-ecc')
 
 // Create a new random private key
 let privateWif
@@ -238,16 +238,16 @@ pubkey = PrivateKey.fromString(privateWif).toPublic().toString()
 # Browser
 
 ```bash
-git clone https://github.com/EOSIO/eosjs-ecc.git
-cd eosjs-ecc
+git clone https://github.com/EOSIO/enujs-ecc.git
+cd enujs-ecc
 npm install
 npm run build_browser
-# builds: ./dist/eosjs-ecc.js
+# builds: ./dist/enujs-ecc.js
 # Verify release hash
 ```
 
 ```html
-<script src=eosjs-ecc.js></script>
+<script src=enujs-ecc.js></script>
 ```
 
 ```js

@@ -1,5 +1,5 @@
 {
-  "name": "eosjs-ecc",
+  "name": "enujs-ecc",
   "version": "4.0.1",
   "description": "Elliptic curve cryptography functions",
   "keywords": "ECC, Private Key, Public Key, Signature, AES, Encryption, Decryption",
@@ -10,7 +10,7 @@
     "coverage": "nyc --reporter=html npm test",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "build": "babel src --out-dir lib",
-    "build_browser": "npm run build && mkdir -p dist && browserify -o dist/eosjs-ecc.js -s eosjs_ecc lib/index.js && sha256sum dist/eosjs-ecc.js",
+    "build_browser": "npm run build && mkdir -p dist && browserify -o dist/enujs-ecc.js -s eosjs_ecc lib/index.js && sha256sum dist/enujs-ecc.js",
     "build_browser_test": "npm run build && mkdir -p dist && browserify -o dist/test.js lib/*.test.js",
     "documentation": "node_modules/documentation/bin/documentation.js",
     "docs": "npm run documentation -- readme src/api_common.js --section \"Common API\" --shallow",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/EOSIO/eosjs-ecc.git"
+    "url": "git://github.com/enumivo/enujs-ecc.git"
   },
   "dependencies": {
     "bigi": "^1.4.2",
