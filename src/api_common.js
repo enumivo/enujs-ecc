@@ -10,7 +10,7 @@ const hash = require("./hash")
     @typedef {string} wif
 */
 /**
-    EOSKey..
+    ENUKey..
     @typedef {string} pubkey
 */
 
@@ -45,7 +45,7 @@ const ecc = {
         @example
 ecc.randomKey().then(privateKey => {
   console.log('Private Key:\t', privateKey) // wif
-  console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // EOSkey...
+  console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // ENUkey...
 })
     */
     randomKey: (cpuEntropyBits) => (
@@ -72,7 +72,7 @@ ecc.randomKey().then(privateKey => {
     privateToPublic: wif => PrivateKey(wif).toPublic().toString(),
 
     /**
-        @arg {pubkey} pubkey - like EOSKey..
+        @arg {pubkey} pubkey - like ENUKey..
         @return {boolean} valid
 
         @example ecc.isValidPublic(pubkey) === true
@@ -151,7 +151,7 @@ ecc.randomKey().then(privateKey => {
     /**
         Recover the public key used to create the signature.
 
-        @arg {String|Buffer} signature (EOSbase58sig.., Hex, Buffer)
+        @arg {String|Buffer} signature (ENUbase58sig.., Hex, Buffer)
         @arg {String|Buffer} data - full data
         @arg {String} [encoding = 'utf8'] - data encoding (if data is a string)
 
@@ -172,7 +172,7 @@ ecc.randomKey().then(privateKey => {
     },
 
     /**
-        @arg {String|Buffer} signature (EOSbase58sig.., Hex, Buffer)
+        @arg {String|Buffer} signature (ENUbase58sig.., Hex, Buffer)
         @arg {String|Buffer} dataSha256 - sha256 hash 32 byte buffer or hex string
         @arg {String} [encoding = 'hex'] - dataSha256 encoding (if dataSha256 is a string)
 

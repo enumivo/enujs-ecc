@@ -1,6 +1,3 @@
-[![NPM](https://img.shields.io/npm/v/enujs-ecc.svg)](https://www.npmjs.org/package/enujs-ecc)
-[![Build Status](https://travis-ci.org/EOSIO/enujs-ecc.svg?branch=master)](https://travis-ci.org/EOSIO/enujs-ecc)
-
 # Elliptic curve cryptography functions (ECC)
 
 Private Key, Public Key, Signature, AES, Encryption / Decryption
@@ -54,7 +51,7 @@ Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 ```javascript
 ecc.randomKey().then(privateKey => {
 console.log('Private Key:\t', privateKey) // wif
-console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // EOSkey...
+console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // ENUkey...
 })
 ```
 
@@ -94,7 +91,7 @@ Returns **[pubkey](#pubkey)**
 
 **Parameters**
 
--   `pubkey` **[pubkey](#pubkey)** like EOSKey..
+-   `pubkey` **[pubkey](#pubkey)** like ENUKey..
 
 **Examples**
 
@@ -172,7 +169,7 @@ Recover the public key used to create the signature.
 
 **Parameters**
 
--   `signature` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (EOSbase58sig.., Hex, Buffer)
+-   `signature` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (ENUbase58sig.., Hex, Buffer)
 -   `data` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** full data
 -   `encoding` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** data encoding (if data is a string) (optional, default `'utf8'`)
 
@@ -188,7 +185,7 @@ Returns **[pubkey](#pubkey)**
 
 **Parameters**
 
--   `signature` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (EOSbase58sig.., Hex, Buffer)
+-   `signature` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (ENUbase58sig.., Hex, Buffer)
 -   `dataSha256` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** sha256 hash 32 byte buffer or hex string
 -   `encoding` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** dataSha256 encoding (if dataSha256 is a string) (optional, default `'hex'`)
 
@@ -211,7 +208,7 @@ Returns **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 ## pubkey
 
-EOSKey..
+ENUKey..
 
 Type: [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
 
@@ -238,7 +235,7 @@ pubkey = PrivateKey.fromString(privateWif).toPublic().toString()
 # Browser
 
 ```bash
-git clone https://github.com/EOSIO/enujs-ecc.git
+git clone https://github.com/enumivo/enujs-ecc.git
 cd enujs-ecc
 npm install
 npm run build_browser
@@ -251,7 +248,7 @@ npm run build_browser
 ```
 
 ```js
-var ecc = eosjs_ecc
+var ecc = enujs_ecc
 
 ecc.randomKey().then(privateWif =>  {
   var pubkey = ecc.privateToPublic(privateWif)

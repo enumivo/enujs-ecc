@@ -46,7 +46,7 @@ function PublicKey(Q) {
 
     /** @todo rename to toStringLegacy */
     function toString() {
-      return 'EOS' + keyUtils.checkEncode(toBuffer())
+      return 'ENU' + keyUtils.checkEncode(toBuffer())
     }
 
     function toUncompressed() {
@@ -138,7 +138,7 @@ PublicKey.fromStringOrThrow = function(public_key) {
     const match = public_key.match(/^PUB_([A-Za-z0-9]+)_([A-Za-z0-9]+)$/)
     if(match === null) {
       // legacy
-      if(/^EOS/.test(public_key)) {
+      if(/^ENU/.test(public_key)) {
         public_key = public_key.substring(3)
       }
       return PublicKey.fromBuffer(keyUtils.checkDecode(public_key))
