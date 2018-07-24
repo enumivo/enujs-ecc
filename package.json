@@ -18,9 +18,9 @@
     "build_browser": "npm run build && mkdir -p lib && browserify -o lib/enujs-ecc.js -s enujs_ecc lib/index.js && sha256sum lib/enujs-ecc.js",
     "build_browser_test": "npm run build && browserify -o dist/test.js lib/*.test.js",
     "documentation": "node_modules/documentation/bin/documentation.js",
-    "minimize": "uglifyjs lib/eosjs-ecc.js -o lib/eosjs-ecc.min.js --source-map --compress --mangle",
+    "minimize": "uglifyjs lib/enujs-ecc.js -o lib/enujs-ecc.min.js --source-map --compress --mangle",
     "docs": "npm run documentation -- readme src/api_common.js --section \"Common API\" --shallow",
-    "srisum": "npx srisum lib/eosjs-ecc.*",
+    "srisum": "npx srisum lib/enujs-ecc.*",
     "prepublishOnly": "npm run build_browser && npm run test_lib && npm run minimize && npm run docs && npm run srisum"
   },
   "repository": {
