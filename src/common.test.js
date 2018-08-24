@@ -29,10 +29,13 @@ describe('Common API', () => {
       [true, 'PUB_K1_859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2Ht7beeX'],
       [true, 'ENU859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM'],
       [false, 'MMM859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM'],
-      [false, 'ENU859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVm'],
+      [false, 'ENU859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVm', 'ENU'],
+      [true, 'PUB859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM', 'PUB'],
+      [false, 'PUB859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVm', 'PUB'],
     ]
     for(const key of keys) {
-      assert.equal(key[0], ecc.isValidPublic(key[1]), key[1])
+      const [valid, pubkey, prefix] = key
+      assert.equal(valid, ecc.isValidPublic(pubkey, prefix), pubkey)
     }
   })
 

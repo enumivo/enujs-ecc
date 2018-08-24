@@ -11,10 +11,13 @@ var n = secp256k1.n
 
 module.exports = PublicKey
 
-/** @param {ecurve.Point} public key */
-function PublicKey(Q) {
+/**
+  @param {string|Buffer|PublicKey|ecurve.Point} public key
+  @param {string} [pubkey_prefix = 'ENU']
+*/
+function PublicKey(Q, pubkey_prefix = 'ENU') {
     if(typeof Q === 'string') {
-        const publicKey = PublicKey.fromString(Q)
+        const publicKey = PublicKey.fromString(Q, pubkey_prefix)
         assert(publicKey != null, 'Invalid public key')
         return publicKey
     } else if(Buffer.isBuffer(Q)) {
@@ -44,9 +47,11 @@ function PublicKey(Q) {
     //     return pubdata;
     // }
 
-    /** @todo rename to toStringLegacy */
-    function toString() {
-      return 'ENU' + keyUtils.checkEncode(toBuffer())
+    /** @todo rename to toStringLegacy
+     * @arg {string} [pubkey_prefix = 'ENU'] - public key prefix
+    */
+    function toString(pubkey_prefix = 'ENU') {
+      return pubkey_prefix + keyUtils.checkEncode(toBuffer())
     }
 
     function toUncompressed() {
@@ -95,9 +100,13 @@ function PublicKey(Q) {
     }
 }
 
-PublicKey.isValid = function(text) {
+/**
+  @param {string|Buffer|PublicKey|ecurve.Point} pubkey - public key
+  @param {string} [pubkey_prefix = 'ENU']
+*/
+PublicKey.isValid = function(pubkey, pubkey_prefix = 'ENU') {
     try {
-        PublicKey(text)
+        PublicKey(pubkey, pubkey_prefix)
         return true
     } catch(e) {
         return false
@@ -118,11 +127,12 @@ PublicKey.fromPoint = function(point) {
 
 /**
     @arg {string} public_key - like PUB_K1_base58pubkey..
+    @arg {string} [pubkey_prefix = 'ENU'] - public key prefix
     @return PublicKey or `null` (invalid)
 */
-PublicKey.fromString = function(public_key) {
+PublicKey.fromString = function(public_key, pubkey_prefix = 'ENU') {
     try {
-        return PublicKey.fromStringOrThrow(public_key)
+        return PublicKey.fromStringOrThrow(public_key, pubkey_prefix)
     } catch (e) {
         return null;
     }
@@ -130,16 +140,20 @@ PublicKey.fromString = function(public_key) {
 
 /**
     @arg {string} public_key - like PUB_K1_base58pubkey..
+    @arg {string} [pubkey_prefix = 'ENU'] - public key prefix
+
     @throws {Error} if public key is invalid
+
     @return PublicKey
 */
-PublicKey.fromStringOrThrow = function(public_key) {
+PublicKey.fromStringOrThrow = function(public_key, pubkey_prefix = 'ENU') {
     assert.equal(typeof public_key, 'string', 'public_key')
     const match = public_key.match(/^PUB_([A-Za-z0-9]+)_([A-Za-z0-9]+)$/)
     if(match === null) {
       // legacy
-      if(/^ENU/.test(public_key)) {
-        public_key = public_key.substring(3)
+      var prefix_match = new RegExp("^" + pubkey_prefix);
+      if(prefix_match.test(public_key)) {
+        public_key = public_key.substring(pubkey_prefix.length)
       }
       return PublicKey.fromBuffer(keyUtils.checkDecode(public_key))
     }

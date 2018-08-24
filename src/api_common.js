@@ -65,19 +65,25 @@ ecc.randomKey().then(privateKey => {
 
     /**
         @arg {wif} wif
+        @arg {string} [pubkey_prefix = 'ENU'] - public key prefix
+
         @return {pubkey}
 
         @example ecc.privateToPublic(wif) === pubkey
     */
-    privateToPublic: wif => PrivateKey(wif).toPublic().toString(),
+    privateToPublic: (wif, pubkey_prefix = 'ENU') =>
+      PrivateKey(wif).toPublic().toString(pubkey_prefix),
 
     /**
         @arg {pubkey} pubkey - like ENUKey..
+        @arg {string} [pubkey_prefix = 'ENU']
+
         @return {boolean} valid
 
         @example ecc.isValidPublic(pubkey) === true
     */
-    isValidPublic: (pubkey) => PublicKey.isValid(pubkey),
+    isValidPublic: (pubkey, pubkey_prefix = 'ENU') =>
+      PublicKey.isValid(pubkey, pubkey_prefix),
 
     /**
         @arg {wif} wif
